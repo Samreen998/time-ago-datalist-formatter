@@ -9,6 +9,7 @@ import org.joget.apps.datalist.model.DataListColumnFormatDefault;
 import java.time.LocalDate;
 import java.time.Period;
 import org.joget.apps.datalist.service.DataListService;
+import org.joget.commons.util.LogUtil;
 
 public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault{
 
@@ -32,20 +33,21 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault{
         
         AppDefinition appDef = AppUtil.getCurrentAppDefinition();
         String result = (String) value;
-        
         String duration = getPropertyString("duration");
-        Period dateDiff;
         
-        if (duration.equals("today")) {
-            
-            LocalDate date = LocalDate.parse(result); //Date
-            LocalDate currentDate = LocalDate.now(); //Current Date
-            
-            //Duration From Column Date To Today
-            try {
-                
+        try {
+            Period dateDiff;
+        
+            if (duration.equals("today")) {
+                if(result.isEmpty()){
+                    return result;
+                }
+                LocalDate date = LocalDate.parse(result); //Date
+                LocalDate currentDate = LocalDate.now(); //Current Date
+
+                //Duration From Column Date To Today
                 dateDiff = Period.between(currentDate, date);
-                                
+
                 if (Math.abs(dateDiff.getYears()) > 0) {
                     return Math.abs(dateDiff.getYears()) + " year(s) " + Math.abs(dateDiff.getMonths()) + 
                             " month(s) " + Math.abs(dateDiff.getDays()) + " day(s)";
@@ -55,23 +57,22 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault{
                     return Math.abs(dateDiff.getDays()) + " day(s)";
                 }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-        } else if (duration.equals("anotherDate")) {
-            
-            LocalDate date = LocalDate.parse(result); //Date
-            
-            String targetDate = getPropertyString("targetDate");
-            String anotherDateField = (String) DataListService.evaluateColumnValueFromRow(row, targetDate);
-            LocalDate anotherDate = LocalDate.parse(anotherDateField); //Another Date
-            
-            //From Column Date To Another Date
-            try {
-                
+            } else if (duration.equals("anotherDate")) {
+                if(result.isEmpty()){
+                    return result;
+                }
+                LocalDate date = LocalDate.parse(result); //Date
+
+                String targetDate = getPropertyString("targetDate");
+                String anotherDateField = (String) DataListService.evaluateColumnValueFromRow(row, targetDate);
+                if(anotherDateField.isEmpty()){
+                    return result;
+                }
+                LocalDate anotherDate = LocalDate.parse(anotherDateField); //Another Date
+
+                //From Column Date To Another Date
                 dateDiff = Period.between(anotherDate, date);
-                                
+
                 if (Math.abs(dateDiff.getYears()) > 0) {
                     return Math.abs(dateDiff.getYears()) + " year(s) " + Math.abs(dateDiff.getMonths()) + 
                             " month(s) " + Math.abs(dateDiff.getDays()) + " day(s)";
@@ -81,25 +82,25 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault{
                     return Math.abs(dateDiff.getDays()) + " day(s)";
                 }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-        } else if (duration.equals("twoDates")) {
-            
-            String targetFromDate = getPropertyString("fromDate");
-            String fromDateField = (String) DataListService.evaluateColumnValueFromRow(row, targetFromDate);
-            LocalDate fromDate = LocalDate.parse(fromDateField); //From Date
-            
-            String targetToDate = getPropertyString("toDate");
-            String toDateField = (String) DataListService.evaluateColumnValueFromRow(row, targetToDate);
-            LocalDate toDate = LocalDate.parse(toDateField); //To Date
-            
-            //Duration Between Two Dates
-            try {
-                
+            } else if (duration.equals("twoDates")) {
+
+                String targetFromDate = getPropertyString("fromDate");
+                String fromDateField = (String) DataListService.evaluateColumnValueFromRow(row, targetFromDate);
+                if(fromDateField.isEmpty()){
+                    return result;
+                }
+                LocalDate fromDate = LocalDate.parse(fromDateField); //From Date
+
+                String targetToDate = getPropertyString("toDate");
+                String toDateField = (String) DataListService.evaluateColumnValueFromRow(row, targetToDate);
+                if(toDateField.isEmpty()){
+                    return result;
+                }
+                LocalDate toDate = LocalDate.parse(toDateField); //To Date
+
+                //Duration Between Two Dates
                 dateDiff = Period.between(fromDate, toDate);
-                                
+
                 if (Math.abs(dateDiff.getYears()) > 0) {
                     return Math.abs(dateDiff.getYears()) + " year(s) " + Math.abs(dateDiff.getMonths()) + 
                             " month(s) " + Math.abs(dateDiff.getDays()) + " day(s)";
@@ -108,11 +109,10 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault{
                 } else {
                     return Math.abs(dateDiff.getDays()) + " day(s)";
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+                
             }
-            
+        } catch (Exception e) {
+            LogUtil.error(TimeAgoDatalistFormatter.class.getName(), e, "Not able to compute duration");
         }
         
         return result;
