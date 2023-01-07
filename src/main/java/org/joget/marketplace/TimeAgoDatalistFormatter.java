@@ -30,21 +30,18 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
 
     public String getYear() {
         // support i18n
-
         return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.year(s)", getClassName(),
                 MESSAGE_PATH);
     }
 
     public String getMonth() {
         // support i18n
-
         return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.month(s)", getClassName(),
                 MESSAGE_PATH);
     }
 
     public String getDay() {
         // support i18n
-
         return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.day(s)", getClassName(),
                 MESSAGE_PATH);
     }
