@@ -1,6 +1,6 @@
 # Description
 
-The Time Ago Datalist Formatter computes time elapsed between 2 dates or against current date.
+The Time Ago Datalist Formatter computes time elapsed between 2 dates or against current date. Read [documentation](https://dev.joget.org/community/display/marketplace/Time+Ago+Formatter).
 
 ![screenshot](https://user-images.githubusercontent.com/70784722/188474783-77b6aa7c-fc98-4f65-af20-2fafcb6f1a76.png)
 
