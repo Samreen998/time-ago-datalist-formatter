@@ -24,26 +24,22 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
 
     public String getDescription() {
         // support i18n
-        return AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.pluginDesc", getClassName(),
-                MESSAGE_PATH);
+        return AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.pluginDesc", getClassName(), MESSAGE_PATH);
     }
 
     public String getYear() {
         // support i18n
-        return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.year(s)", getClassName(),
-                MESSAGE_PATH);
+        return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.year(s)", getClassName(), MESSAGE_PATH);
     }
 
     public String getMonth() {
         // support i18n
-        return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.month(s)", getClassName(),
-                MESSAGE_PATH);
+        return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.month(s)", getClassName(), MESSAGE_PATH);
     }
 
     public String getDay() {
         // support i18n
-        return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.day(s)", getClassName(),
-                MESSAGE_PATH);
+        return " " + AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.day(s)", getClassName(), MESSAGE_PATH);
     }
 
     @Override
@@ -139,8 +135,7 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
 
     public String getLabel() {
         // support i18n
-        return AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.pluginLabel", getClassName(),
-                MESSAGE_PATH);
+        return AppPluginUtil.getMessage("org.joget.marketplace.TimeAgoDatalistFormatter.pluginLabel", getClassName(), MESSAGE_PATH);
     }
 
     public String getClassName() {
@@ -148,7 +143,6 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
     }
 
     public String getPropertyOptions() {
-        return AppUtil.readPluginResource(getClassName(), "/properties/TimeAgoDatalistFormatter.json", null, true,
-                MESSAGE_PATH);
+        return AppUtil.readPluginResource(getClassName(), "/properties/TimeAgoDatalistFormatter.json", null, true, MESSAGE_PATH);
     }
 }
