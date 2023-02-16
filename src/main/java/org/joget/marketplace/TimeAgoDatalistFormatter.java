@@ -71,7 +71,7 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+               LogUtil.error("org.sample.TimeAgoDatalistFormatter", e, "Error!!");
             }
 
         } else if (duration.equals("anotherDate")) {
@@ -97,7 +97,7 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+               LogUtil.error("org.sample.TimeAgoDatalistFormatter", e, "Error!!");
             }
 
         } else if (duration.equals("twoDates")) {
@@ -125,7 +125,7 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.error("org.sample.TimeAgoDatalistFormatter", e, "Error!!");
             }
 
         }
