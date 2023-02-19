@@ -125,7 +125,7 @@ public class TimeAgoDatalistFormatter extends DataListColumnFormatDefault {
                 }
 
             } catch (Exception e) {
-                LogUtil.error("org.sample.TimeAgoDatalistFormatter", e, "Error!!");
+               LogUtil.error(TimeAgoDatalistFormatter.class.getName(), e, "Not able to compute duration");
             }
 
         }
